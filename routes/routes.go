@@ -7,8 +7,18 @@ import (
 )
 
 func SetupRoutes(app *gin.Engine) {
-	app.GET("/api/position", controllers.GetPositions)
-	app.POST("/api/position", controllers.CreatePosition)
-	app.DELETE("/api/position/:id", controllers.DeletePosition)
-	app.PUT("/api/position/:id", controllers.UpdatePosition)
+	api := app.Group("/api")
+	{
+		position := api.Group("/position")
+		{
+			position.GET("", controllers.GetPositions)
+			position.POST("", controllers.CreatePosition)
+			position.DELETE("/:id", controllers.DeletePosition)
+			position.PUT("/:id", controllers.UpdatePosition)
+
+			// Routes métiers spécifiques
+			position.GET("/average-yield", controllers.GetAverageYield)
+			position.GET("/monthly-income", controllers.GetMonthlyIncome)
+		}
+	}
 }

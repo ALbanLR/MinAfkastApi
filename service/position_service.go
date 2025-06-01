@@ -46,3 +46,35 @@ func UpdatePosition(id string, input *models.Position) (*models.Position, error)
 
 	return &position, nil
 }
+
+func CalculateAverageYield() (float32, error) {
+	var positions []models.Position
+	if err := database.DB.Find(&positions).Error; err != nil {
+		return 0, err
+	}
+
+	if len(positions) == 0 {
+		return 0, nil
+	}
+
+	var totalYield float32
+	for _, p := range positions {
+		totalYield += p.Yield
+	}
+
+	return totalYield / float32(len(positions)), nil
+}
+
+func CalculateMonthlyIncome() (float32, error) {
+	var positions []models.Position
+	if err := database.DB.Find(&positions).Error; err != nil {
+		return 0, err
+	}
+
+	var monthlyIncome float32
+	for _, p := range positions {
+		monthlyIncome += ((p.Yield / float32(12)) / 100) * float32(p.TotalValue)
+	}
+
+	return monthlyIncome, nil
+}

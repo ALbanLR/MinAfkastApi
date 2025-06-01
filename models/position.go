@@ -6,9 +6,9 @@ type Position struct {
 	gorm.Model
 	Label       string  `json:"label"`
 	Description string  `json:"description"`
-	ShareNumber int     `json:"shareNumber"`
-	SharePrice  int     `json:"sharePrice"`
-	TotalValue  int     `json:"totalValue"`
+	ShareNumber float32 `json:"shareNumber"`
+	SharePrice  float32 `json:"sharePrice"`
+	TotalValue  float32 `json:"totalValue"`
 	Yield       float32 `json:"yield"`
 	//TaxRate     Tax     `json:"TaxRate,omitempty"`
 }

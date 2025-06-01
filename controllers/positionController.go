@@ -60,3 +60,21 @@ func UpdatePosition(c *gin.Context) {
 
 	c.JSON(http.StatusOK, updated)
 }
+
+func GetAverageYield(c *gin.Context) {
+	avg, err := services.CalculateAverageYield()
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Erreur calcul rendement moyen"})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"average_yield": avg})
+}
+
+func GetMonthlyIncome(c *gin.Context) {
+	income, err := services.CalculateMonthlyIncome()
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Erreur calcul revenus mensuels"})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"monthly_income": income})
+}
