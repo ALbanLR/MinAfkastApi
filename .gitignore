@@ -1,0 +1,19 @@
+# Ne pas versionner les fichiers de configuration VS Code
+.vscode/
+
+# Ne pas versionner les fichiers/dossiers de base de données
+database/
+*.db
+
+# Go build / cache / bin
+bin/
+*.exe
+*.out
+*.test
+
+# Fichiers de logs
+*.log
+
+# Fichiers système
+.DS_Store
+Thumbs.db
