@@ -10,5 +10,5 @@ type Position struct {
 	SharePrice  float32 `json:"sharePrice"`
 	TotalValue  float32 `json:"totalValue"`
 	Yield       float32 `json:"yield"`
-	//TaxRate     Tax     `json:"TaxRate,omitempty"`
+	TaxRateID   uint    `json:"taxRateId"`
 }
